@@ -124,6 +124,53 @@ Query OK, 4 rows affected (0.02 sec)
 Records: 4  Duplicates: 0  Warnings: 0
 ===========================================================================================================================================
 
+-------------------------------------------------------
+#UC4 ::: To View the data into table Employee_Payroll 
+-------------------------------------------------------
+#Retrieving data from Table
+mysql> select *from Employee_payroll;
++----+-------+--------+------------+
+| id | name  | salary | start      |
++----+-------+--------+------------+
+|  1 | Raj   |  50000 | 2022-05-01 |
+|  2 | Sam   |  55000 | 2021-12-01 |
+|  3 | David |  60000 | 2021-06-01 |
+|  4 | Zayn  | 100000 | 2020-12-01 |
++----+-------+--------+------------+
+4 rows in set (0.00 sec)
+
+#Selecting David from table by denoted salary 
+mysql> select salary from  Employee_payroll WHERE name = 'David';
++--------+
+| salary |
++--------+
+|  60000 |
++--------+
+1 row in set (0.03 sec)
+
+#Deleting data of David from table
+mysql> DELETE FROM Employee_payroll WHERE name='David';
+Query OK, 1 row affected (0.02 sec)
+
+#Inserting data to the table 
+mysql> INSERT INTO Employee_payroll (name, salary, start) VALUES ('Bill', 1000000.00, '2018-01-03');
+Query OK, 1 row affected (0.01 sec)
+
+#Displaying Data to check new entry
+mysql> select *from Employee_payroll;
++----+------+---------+------------+
+| id | name | salary  | start      |
++----+------+---------+------------+
+|  1 | Raj  |   50000 | 2022-05-01 |
+|  2 | Sam  |   55000 | 2021-12-01 |
+|  4 | Zayn |  100000 | 2020-12-01 |
+|  5 | Bill | 1000000 | 2018-01-03 |
++----+------+---------+------------+
+4 rows in set (0.00 sec)
+===========================================================================================================================================
+
+
+
 
 
 
