@@ -86,6 +86,34 @@ mysql> select database ();
 +--------------------------+
 1 row in set (0.00 sec)
 
+-------------------------------------------------------
+#UC2 ::: To Create table Employee_Payroll 
+-------------------------------------------------------
+#Creating table to add the data
+mysql> create table Employee_payroll (id int (10) unsigned auto_increment primary key not null, name varchar (50) not null, salary double not null, start date not null);
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+#Checking table if its added
+mysql> show tables;
++------------------------------------+
+| Tables_in_employee_payroll_service |
++------------------------------------+
+| employee_payroll                   |
++------------------------------------+
+1 row in set (0.00 sec)
+
+#Selecting table to describing the data
+mysql> describe Employee_payroll;         #To view all the data from the table
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | int unsigned | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(50)  | NO   |     | NULL    |                |
+| salary | double       | NO   |     | NULL    |                |
+| start  | date         | NO   |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
 
 
 
