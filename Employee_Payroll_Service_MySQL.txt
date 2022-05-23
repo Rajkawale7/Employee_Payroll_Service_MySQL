@@ -186,7 +186,48 @@ mysql> SELECT * FROM Employee_payroll WHERE start BETWEEN CAST('2018-01-01' AS D
 4 rows in set (0.01 sec)
 
 ===========================================================================================================================================
+-----------------------------------------------------------------------
+#UC6 :::  Adding Columns (Gender) and updating row
+----------------------------------------------------------------------
 
+#Adding column Gender to the table
+mysql> ALTER TABLE Employee_payroll ADD gender CHAR(1) AFTER name;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+#Checking Gender column if its add
+mysql> select *from Employee_payroll;
++----+------+--------+---------+------------+
+| id | name | gender | salary  | start      |
++----+------+--------+---------+------------+
+|  1 | Raj  | NULL   |   50000 | 2022-05-01 |
+|  2 | Sam  | NULL   |   55000 | 2021-12-01 |
+|  4 | Zayn | NULL   |  100000 | 2020-12-01 |
+|  5 | Bill | NULL   | 1000000 | 2018-01-03 |
++----+------+--------+---------+------------+
+4 rows in set (0.00 sec)
+
+#Deleting column gender
+mysql> ALTER TABLE Employee_payroll DROP gender;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+#Checking column if its deleted
+mysql> select *from Employee_payroll;
++----+------+---------+------------+
+| id | name | salary  | start      |
++----+------+---------+------------+
+|  1 | Raj  |   50000 | 2022-05-01 |
+|  2 | Sam  |   55000 | 2021-12-01 |
+|  4 | Zayn |  100000 | 2020-12-01 |
+|  5 | Bill | 1000000 | 2018-01-03 |
++----+------+---------+------------+
+4 rows in set (0.00 sec)
+
+#Deleting Database
+mysql> DROP DATABASE employee_payroll_service;
+Query OK, 1 row affected (0.04 sec)
+================================================================================================================================================
 
 
 
