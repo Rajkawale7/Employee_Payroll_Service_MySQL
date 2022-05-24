@@ -375,22 +375,25 @@ mysql> describe Employee_payroll;
 ----------------------------------------------------------------------------------------------------
 #UC10 :::  Ability to make Terissa as part of Sales and Marketing Department
 ----------------------------------------------------------------------------------------------------
+mysql> INSERT INTO Employee_payroll(name, Phone_Number, address, department, gender, basic_pay, deductions, taxable_pay, income_tax, net_pay, start)
+    -> VALUES('Terissa', '1234567890', 'NewYork', 'Marketting', 'F', 3000000.00, 1000000.00, 2000000.00, 500000.00, 1500000.00, '2018-01-03'),
+    -> ('Terissa', '1234567890', 'NewYork', 'Sales', 'F', 30000000.00, 0, 0, 0, 0, '2019-11-13');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+mysql> select * from Employee_payroll;
++----+---------+--------------+---------+------------+--------+-----------+------------+-------------+------------+---------+------------+
+| id | name    | Phone_Number | address | department | gender | basic_pay | deductions | taxable_pay | income_tax | net_pay | start      |
++----+---------+--------------+---------+------------+--------+-----------+------------+-------------+------------+---------+------------+
+|  1 | Raj     | NULL         | NULL    |            | M      |     50000 |          0 |           0 |          0 |       0 | 2022-05-01 |
+|  2 | Sam     | NULL         | NULL    |            | M      |     55000 |          0 |           0 |          0 |       0 | 2021-12-01 |
+|  4 | Zayn    | NULL         | NULL    |            | M      |    100000 |          0 |           0 |          0 |       0 | 2020-12-01 |
+|  5 | Bill    | NULL         | NULL    |            | M      |   1000000 |          0 |           0 |          0 |       0 | 2018-01-03 |
+|  6 | Shanaya | NULL         | NULL    |            | F      |    150000 |          0 |           0 |          0 |       0 | 2017-01-03 |
+|  7 | Terissa | 1234567890   | NewYork | Marketting | F      |   3000000 |    1000000 |     2000000 |     500000 | 1500000 | 2018-01-03 |
+|  8 | Terissa | 1234567890   | NewYork | Sales      | F      |  30000000 |          0 |           0 |          0 |       0 | 2019-11-13 |
++----+---------+--------------+---------+------------+--------+-----------+------------+-------------+------------+---------+------------+
+7 rows in set (0.00 sec)
 
 
 
