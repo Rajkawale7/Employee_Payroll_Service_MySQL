@@ -395,10 +395,124 @@ mysql> select * from Employee_payroll;
 +----+---------+--------------+---------+------------+--------+-----------+------------+-------------+------------+---------+------------+
 7 rows in set (0.00 sec)
 
+===================================================================================================================================================
 
+----------------------------------------------------------------------------------------------------
+#UC11 :::  Implement the ER Diagram into Payroll Service DB with creating other tables
+----------------------------------------------------------------------------------------------------
 
+#Creating table "Company"
 
+mysql> CREATE TABLE Company (company_ID INT PRIMARY KEY, company_Name VARCHAR(15) NOT NULL);
+Query OK, 0 rows affected (0.03 sec)
 
+mysql> SHOW TABLES;
++------------------------------------+
+| Tables_in_employee_payroll_service |
++------------------------------------+
+| company                            |
+| employee_payroll                   |
++------------------------------------+
+2 rows in set (0.00 sec)
 
+mysql> DESCRIBE company;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| company_ID   | int         | NO   | PRI | NULL    |       |
+| company_Name | varchar(15) | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
 
+---------------------------------------------
+#Creating employee table
 
+mysql> CREATE TABLE employee (ID INT unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, company_ID INT,
+    -> phone_number varchar(250),
+    -> address varchar(250),
+    -> gender char(1),
+    -> Name varchar(150) NOT NULL,
+    -> FOREIGN KEY (company_ID) REFERENCES company (company_ID)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> describe employee;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| ID           | int unsigned | NO   | PRI | NULL    | auto_increment |
+| company_ID   | int          | YES  | MUL | NULL    |                |
+| phone_number | varchar(250) | YES  |     | NULL    |                |
+| address      | varchar(250) | YES  |     | NULL    |                |
+| gender       | char(1)      | YES  |     | NULL    |                |
+| Name         | varchar(150) | NO   |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+----------------------------------
+#Creating Payroll table
+
+mysql> CREATE TABLE payroll
+    -> (
+    -> ID   INT unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    -> FOREIGN KEY (ID) REFERENCES employee (ID),
+    -> basic_pay    DOUBLE NOT NULL,
+    -> deductions   DOUBLE NOT NULL,
+    -> taxable_pay  DOUBLE NOT NULL,
+    -> tax  DOUBLE NOT NULL,
+    -> net_pay DOUBLE NOT NULL
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> describe payroll;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| ID          | int unsigned | NO   | PRI | NULL    | auto_increment |
+| basic_pay   | double       | NO   |     | NULL    |                |
+| deductions  | double       | NO   |     | NULL    |                |
+| taxable_pay | double       | NO   |     | NULL    |                |
+| tax         | double       | NO   |     | NULL    |                |
+| net_pay     | double       | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+-------------------------------------------
+#Creating table Department
+
+mysql> CREATE TABLE department(
+    -> Department_ID int NOT NULL PRIMARY KEY,
+    -> Department_Name varchar(150) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> describe department;
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| Department_ID   | int          | NO   | PRI | NULL    |       |
+| Department_Name | varchar(150) | NO   |     | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+--------------------------------------------
+#Creating table employee_department
+
+mysql> create table employee_department(
+    -> ID   INT unsigned NOT NULL AUTO_INCREMENT,
+    -> FOREIGN KEY (ID) REFERENCES employee (ID),
+    -> Department_ID int NOT NULL,
+    -> FOREIGN KEY (Department_ID) REFERENCES department (Department_ID)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> describe employee_department;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| ID            | int unsigned | NO   | MUL | NULL    | auto_increment |
+| Department_ID | int          | NO   | MUL | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+====================================================================
