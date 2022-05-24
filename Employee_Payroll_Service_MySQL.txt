@@ -515,4 +515,111 @@ mysql> describe employee_department;
 +---------------+--------------+------+-----+---------+----------------+
 2 rows in set (0.00 sec)
 
-====================================================================
+======================================================================
+#UC12 ::: Adding data into the corresponding created tables
+----------------------------------------------------------------------------------------------------
+
+#Adding data into table "Company"
+
+mysql> INSERT INTO company VALUES
+    -> (1,'Capgemini'),
+    -> (2,'Microsoft'),
+    -> (3,'Reliance');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from company;
++------------+--------------+
+| company_ID | company_Name |
++------------+--------------+
+|          1 | Capgemini    |
+|          2 | Microsoft    |
+|          3 | Reliance     |
++------------+--------------+
+3 rows in set (0.00 sec)
+
+-----------------------------------------------------
+#Adding data into table "Employee" 
+
+mysql> INSERT INTO employee VALUES
+    -> (101,1,'8886771','Hyderabad','F','Shreya'),
+    -> (102,2,'4567823','Mumbai','F','Neha'),
+    -> (103,3,'4567828','Pune','M','Rajiv');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++-----+------------+--------------+-----------+--------+--------+
+| ID  | company_ID | phone_number | address   | gender | Name   |
++-----+------------+--------------+-----------+--------+--------+
+| 101 |          1 | 8886771      | Hyderabad | F      | Shreya |
+| 102 |          2 | 4567823      | Mumbai    | F      | Neha   |
+| 103 |          3 | 4567828      | Pune      | M      | Rajiv  |
++-----+------------+--------------+-----------+--------+--------+
+3 rows in set (0.00 sec)
+
+-----------------------------------------------------
+#Adding data into table "payroll"
+
+mysql> INSERT INTO payroll VALUES
+    -> (101,50000,5000,45000,5000,40000),
+    -> (102,20000,2000,18000,3000,15000),
+    -> (103,60000,6000,54000,4000,50000);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from payroll;
++-----+-----------+------------+-------------+------+---------+
+| ID  | basic_pay | deductions | taxable_pay | tax  | net_pay |
++-----+-----------+------------+-------------+------+---------+
+| 101 |     50000 |       5000 |       45000 | 5000 |   40000 |
+| 102 |     20000 |       2000 |       18000 | 3000 |   15000 |
+| 103 |     60000 |       6000 |       54000 | 4000 |   50000 |
++-----+-----------+------------+-------------+------+---------+
+3 rows in set (0.00 sec)
+
+-------------------------------------------------------------------
+#Adding data into table "department"
+
+mysql> INSERT INTO department VALUES
+    -> (21,'AI'),
+    -> (22,'CSE'),
+    -> (23,'Sales and Marketing');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from department;
++---------------+---------------------+
+| Department_ID | Department_Name     |
++---------------+---------------------+
+|            21 | AI                  |
+|            22 | CSE                 |
+|            23 | Sales and Marketing |
++---------------+---------------------+
+3 rows in set (0.00 sec)
+
+---------------------------------------------------
+#Adding data into table "employee_department"
+
+mysql> INSERT INTO employee_department VALUES
+    -> (101,21),
+    -> (102,22),
+    -> (103,23),
+    -> (102,21);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_department;
++-----+---------------+
+| ID  | Department_ID |
++-----+---------------+
+| 101 |            21 |
+| 102 |            22 |
+| 103 |            23 |
+| 102 |            21 |
++-----+---------------+
+4 rows in set (0.00 sec)
+
+============================================================================================================================================
+
+
