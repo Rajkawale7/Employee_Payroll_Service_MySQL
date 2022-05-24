@@ -343,4 +343,31 @@ mysql> describe Employee_payroll;
 -----------------------------------------------------------------------
 #UC9 :::  Extend table data to Adding columns Basic Pay, Deductions, Taxable Pay, Income tax, and Net pay into the table
 ----------------------------------------------------------------------
+mysql> ALTER TABLE Employee_payroll
+    -> ADD deductions DOUBLE NOT NULL AFTER basic_pay,
+    -> ADD taxable_pay DOUBLE NOT NULL AFTER deductions,
+    -> ADD income_tax DOUBLE NOT NULL AFTER taxable_pay,
+    -> ADD net_pay DOUBLE NOT NULL AFTER income_tax;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
 
+mysql> describe Employee_payroll;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| id           | int unsigned | NO   | PRI | NULL    | auto_increment |
+| name         | varchar(50)  | NO   |     | NULL    |                |
+| Phone_Number | char(250)    | YES  |     | NULL    |                |
+| address      | varchar(250) | YES  |     | NULL    |                |
+| department   | varchar(150) | NO   |     | NULL    |                |
+| gender       | char(1)      | YES  |     | NULL    |                |
+| basic_pay    | double       | NO   |     | NULL    |                |
+| deductions   | double       | NO   |     | NULL    |                |
+| taxable_pay  | double       | NO   |     | NULL    |                |
+| income_tax   | double       | NO   |     | NULL    |                |
+| net_pay      | double       | NO   |     | NULL    |                |
+| start        | date         | NO   |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+12 rows in set (0.00 sec)
+
+===================================================================================================================================================
