@@ -313,3 +313,34 @@ mysql> select * from Employee_payroll;
 +----+---------+--------+---------+------------+
 5 rows in set (0.00 sec)
 ===================================================================================================================================================
+			**********SECTION - 2 (ER DIAGRAM)************
+
+-----------------------------------------------------------------------
+#UC8 :::  Extend table data to Adding columns phone_Number, address and department into the table
+----------------------------------------------------------------------
+mysql> ALTER TABLE Employee_payroll ADD Phone_Number CHAR(250) AFTER name,
+    -> ADD address varchar(250) AFTER Phone_Number,
+    -> ADD department varchar(150) NOT NULL AFTER address;
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe Employee_payroll;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| id           | int unsigned | NO   | PRI | NULL    | auto_increment |
+| name         | varchar(50)  | NO   |     | NULL    |                |
+| Phone_Number | char(250)    | YES  |     | NULL    |                |
+| address      | varchar(250) | YES  |     | NULL    |                |
+| department   | varchar(150) | NO   |     | NULL    |                |
+| gender       | char(1)      | YES  |     | NULL    |                |
+| salary       | double       | NO   |     | NULL    |                |
+| start        | date         | NO   |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+8 rows in set (0.00 sec)
+
+===================================================================================================================================================
+-----------------------------------------------------------------------
+#UC9 :::  Extend table data to Adding columns Basic Pay, Deductions, Taxable Pay, Income tax, and Net pay into the table
+----------------------------------------------------------------------
+
