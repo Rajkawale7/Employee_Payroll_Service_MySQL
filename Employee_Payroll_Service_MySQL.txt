@@ -207,40 +207,109 @@ mysql> select *from Employee_payroll;
 +----+------+--------+---------+------------+
 4 rows in set (0.00 sec)
 
-#Deleting column gender
-mysql> ALTER TABLE Employee_payroll DROP gender;
-Query OK, 0 rows affected (0.07 sec)
-Records: 0  Duplicates: 0  Warnings: 0
+mysql> UPDATE Employee_payroll set gender = 'M' WHERE name = 'Raj';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
-#Checking column if its deleted
-mysql> select *from Employee_payroll;
-+----+------+---------+------------+
-| id | name | salary  | start      |
-+----+------+---------+------------+
-|  1 | Raj  |   50000 | 2022-05-01 |
-|  2 | Sam  |   55000 | 2021-12-01 |
-|  4 | Zayn |  100000 | 2020-12-01 |
-|  5 | Bill | 1000000 | 2018-01-03 |
-+----+------+---------+------------+
-4 rows in set (0.00 sec)
+mysql> UPDATE Employee_payroll set gender = 'M' WHERE name = 'Sam';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
-#Deleting Database
-mysql> DROP DATABASE employee_payroll_service;
-Query OK, 1 row affected (0.04 sec)
+mysql> UPDATE Employee_payroll set gender = 'M' WHERE name = 'Zayn';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE Employee_payroll set gender = 'M' WHERE name = 'Bill';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> INSERT INTO Employee_payroll (name, gender, salary, start) VALUES ('Shanaya', 'F', 150000.00, '2017-01-03');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from Employee_payroll;
++----+---------+--------+---------+------------+
+| id | name    | gender | salary  | start      |
++----+---------+--------+---------+------------+
+|  1 | Raj     | M      |   50000 | 2022-05-01 |
+|  2 | Sam     | M      |   55000 | 2021-12-01 |
+|  4 | Zayn    | M      |  100000 | 2020-12-01 |
+|  5 | Bill    | M      | 1000000 | 2018-01-03 |
+|  6 | Shanaya | F      |  150000 | 2017-01-03 |
++----+---------+--------+---------+------------+
+5 rows in set (0.00 sec)
 ================================================================================================================================================
 
+-----------------------------------------------------------------------
+#UC7 :::  Performing some arithmatic operaions
+----------------------------------------------------------------------
+#Calculating Avg of salary of each genders
+mysql> select gender, avg(salary) from Employee_payroll group by gender;
++--------+-------------+
+| gender | avg(salary) |
++--------+-------------+
+| M      |      301250 |
+| F      |      150000 |
++--------+-------------+
+2 rows in set (0.01 sec)
 
+#Calculating total Avg of salary of both genders
+mysql> select avg(salary) from Employee_payroll;
++-------------+
+| avg(salary) |
++-------------+
+|      271000 |
++-------------+
+1 row in set (0.02 sec)
 
+#Calculating total sum of salary by genders
+mysql> select gender ,sum(salary) from Employee_payroll group by gender;
++--------+-------------+
+| gender | sum(salary) |
++--------+-------------+
+| M      |     1205000 |
+| F      |      150000 |
++--------+-------------+
+2 rows in set (0.00 sec)
 
+#Finding Minimum salary accordingly gender from table
+mysql> select gender ,min(salary) from Employee_payroll group by gender;
++--------+-------------+
+| gender | min(salary) |
++--------+-------------+
+| M      |       50000 |
+| F      |      150000 |
++--------+-------------+
+2 rows in set (0.00 sec)
 
+#Finding Maximum salary accordingly gender from table
+mysql> select gender ,max(salary) from Employee_payroll group by gender;
++--------+-------------+
+| gender | max(salary) |
++--------+-------------+
+| M      |     1000000 |
+| F      |      150000 |
++--------+-------------+
+2 rows in set (0.00 sec)
 
+#Counting number of datas of employee present in table
+mysql> select count(salary) as count_of_salary from Employee_payroll;
++-----------------+
+| count_of_salary |
++-----------------+
+|               5 |
++-----------------+
+1 row in set (0.01 sec)
 
-
-
-
-
-
-
-
-
- 
+#Showing all the final data
+mysql> select * from Employee_payroll;
++----+---------+--------+---------+------------+
+| id | name    | gender | salary  | start      |
++----+---------+--------+---------+------------+
+|  1 | Raj     | M      |   50000 | 2022-05-01 |
+|  2 | Sam     | M      |   55000 | 2021-12-01 |
+|  4 | Zayn    | M      |  100000 | 2020-12-01 |
+|  5 | Bill    | M      | 1000000 | 2018-01-03 |
+|  6 | Shanaya | F      |  150000 | 2017-01-03 |
++----+---------+--------+---------+------------+
+5 rows in set (0.00 sec)
+===================================================================================================================================================
